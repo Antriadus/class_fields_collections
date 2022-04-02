@@ -1,0 +1,20 @@
+name: fields_collections_annotations
+description: The annotation package for the fields_collections_generator. 
+version: 0.0.0
+repository: https://github.com/Antriadus/class_fields_collections/tree/master/packages/class_fields_annotation
+homepage: https://github.com/Antriadus/class_fields_collections
+
+environment:
+  sdk: '>=2.15.1 <3.0.0'
+
+
+dependencies:
+  meta: ^1.7.0
+
+dev_dependencies:
+  test: ^1.16.0
+
+scripts: ../../derry.yaml
+
+import_sorter:
+  comments: false
