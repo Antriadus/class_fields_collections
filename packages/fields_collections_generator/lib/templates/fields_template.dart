@@ -1,4 +1,4 @@
-import 'package:fields_collections/domain/class.dart';
+import 'package:fields_collections/models/class.dart';
 
 /// {@template fields_template}
 /// The template for the field keys
@@ -14,16 +14,18 @@ class FieldsTemplate {
   String generate() {
     final genName = '_\$${subject.name}Fields';
 
-    final fields = subject.fields.map((field) {
-      return "final ${field.cleanName} = '${field.key}';";
-    });
+    // final fields = subject.fields.map((field) {
+    //   return "final ${field.displayName} = '${field.displayName}';";
+    // });
 
-    return '''
-class $genName {
-  const $genName();
-
-  ${fields.join('\n')}
-}
-''';
+//     final result = '''
+// class _\$$genName {
+//   get Set<object?> =>{
+//   ${fields.join('\n')},
+//   }
+// }
+// ''';
+    final result = '';
+    return result;
   }
 }

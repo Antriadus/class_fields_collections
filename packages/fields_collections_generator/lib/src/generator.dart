@@ -2,7 +2,7 @@
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
-import 'package:fields_collections/domain/class.dart';
+import 'package:fields_collections/models/class.dart';
 import 'package:fields_collections/templates/fields_template.dart';
 import 'package:fields_collections_annotations/src/fields.dart';
 import 'package:source_gen/source_gen.dart';
@@ -27,9 +27,7 @@ class FieldsGenerator extends GeneratorForAnnotation<Fields> {
         element: element,
       );
     }
-
     final subject = Class.fromElement(element);
-
     return FieldsTemplate(subject).generate();
   }
 }
