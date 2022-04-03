@@ -4,9 +4,13 @@ import 'package:test/test.dart';
 
 void main() {
   const files = [
+    'exclude_but_match',
+    'exclude',
     'multiple_nested_types',
     'nested_types',
     'no_match',
+    'nullable_exclude_but_match',
+    'nullable_exclude',
     'nullable_nested_types',
     'nullable_no_match',
     'nullable_strings',

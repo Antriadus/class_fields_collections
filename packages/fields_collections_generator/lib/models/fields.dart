@@ -1,7 +1,10 @@
+import 'package:analyzer/dart/constant/value.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/nullability_suffix.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:fields_collections/src/common_type_finder.dart';
+import 'package:fields_collections_annotations/class_fields_annotation.dart';
+import 'package:source_gen/source_gen.dart';
 
 class ClassFields {
   ClassFields({
@@ -9,6 +12,17 @@ class ClassFields {
   });
 
   factory ClassFields.fromElements(Iterable<FieldElement> elements) {
+    bool isFieldExcluded(FieldElement element) {
+      const fieldAnnotationChecker = TypeChecker.fromRuntime(Field);
+      final DartObject? fieldAnnotation = fieldAnnotationChecker.firstAnnotationOf(element);
+      if (fieldAnnotation != null) {
+        final reader = ConstantReader(fieldAnnotation);
+        final excluded = reader.read('exclude').literalValue as bool?;
+        return excluded ?? false;
+      }
+      return false;
+    }
+
     Iterable<ClassField> fromElements(Iterable<FieldElement> elements) sync* {
       for (final element in elements) {
         // [element.isSynthetic] is true for fields that are
@@ -18,12 +32,14 @@ class ClassFields {
           continue;
         }
         if (element.type is InterfaceType) {
-          yield ClassField.fromElement(element, element.type as InterfaceType);
+          if (!isFieldExcluded(element)) {
+            yield ClassField.fromElement(element, element.type as InterfaceType);
+          }
         }
       }
     }
 
-    return ClassFields(fields: fromElements(elements));
+    return ClassFields(fields: fromElements(elements).toList());
   }
 
   final Iterable<ClassField> fields;
