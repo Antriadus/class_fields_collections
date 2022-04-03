@@ -4,7 +4,14 @@ import 'package:test/test.dart';
 
 void main() {
   const files = [
-    'basic',
+    'multiple_nested_types',
+    'nested_types',
+    'no_match',
+    'nullable_nested_types',
+    'nullable_no_match',
+    'nullable_strings',
+    'nullable_types',
+    'strings',
   ];
 
   for (final file in files) {

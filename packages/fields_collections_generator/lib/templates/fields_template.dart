@@ -12,20 +12,19 @@ class FieldsTemplate {
 
   /// generates the fields for the subject
   String generate() {
-    final genName = '_\$${subject.name}Fields';
+    final fields = StringBuffer();
+    for (var field in subject.classFields.fields) {
+      fields.write(field.name);
+      fields.write(',\n');
+    }
 
-    // final fields = subject.fields.map((field) {
-    //   return "final ${field.displayName} = '${field.displayName}';";
-    // });
-
-//     final result = '''
-// class _\$$genName {
-//   get Set<object?> =>{
-//   ${fields.join('\n')},
-//   }
-// }
-// ''';
-    final result = '';
+    final result = '''
+    extension ${subject.name}FieldsExtensions on ${subject.name} {
+      Set<${subject.classFields.commonType}> get fields => {
+       ${fields.toString()}
+      };
+    }
+    ''';
     return result;
   }
 }

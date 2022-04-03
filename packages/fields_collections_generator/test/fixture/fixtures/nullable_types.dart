@@ -2,11 +2,12 @@
 // FieldsGenerator
 // **************************************************************************
 
-part of '../basic.dart';
+part of '../nullable_types.dart';
 
-class _$PersonFields {
-  const _$PersonFields();
-
-  final name = 'name';
-  final age = 'age';
+extension NullableTypesFieldsExtensions on NullableTypes {
+  Set<Middle?> get fields => {
+        top,
+        middle,
+        third,
+      };
 }
