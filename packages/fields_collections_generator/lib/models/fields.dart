@@ -25,10 +25,8 @@ class ClassFields {
 
     Iterable<ClassField> fromElements(Iterable<FieldElement> elements) sync* {
       for (final element in elements) {
-        // [element.isSynthetic] is true for fields that are
-        // declared getters
         // Ignore all static fields
-        if (element.isSynthetic || element.isStatic) {
+        if (element.isStatic) {
           continue;
         }
         if (element.type is InterfaceType) {

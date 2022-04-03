@@ -6,6 +6,8 @@ void main() {
   const files = [
     'exclude_but_match',
     'exclude',
+    'exclude_getters',
+    'getters',
     'multiple_nested_types',
     'nested_types',
     'no_match',
