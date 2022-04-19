@@ -12,7 +12,7 @@ class ClassFields {
   });
 
   factory ClassFields.fromElements(Iterable<FieldElement> elements) {
-    bool isFieldExcluded(FieldElement element) {
+    bool isFieldExcluded(Element element) {
       const fieldAnnotationChecker = TypeChecker.fromRuntime(Field);
       final DartObject? fieldAnnotation = fieldAnnotationChecker.firstAnnotationOf(element);
       if (fieldAnnotation != null) {
@@ -25,11 +25,16 @@ class ClassFields {
 
     Iterable<ClassField> fromElements(Iterable<FieldElement> elements) sync* {
       for (final element in elements) {
-        // Ignore all static fields
         if (element.isStatic) {
+          //TODO handle statics
           continue;
         }
-        if (element.type is InterfaceType) {
+        // getters
+        else if (element.isSynthetic) {
+          if (!isFieldExcluded(element.nonSynthetic)) {
+            yield ClassField.fromElement(element, element.type as InterfaceType);
+          }
+        } else if (element.type is InterfaceType) {
           if (!isFieldExcluded(element)) {
             yield ClassField.fromElement(element, element.type as InterfaceType);
           }
