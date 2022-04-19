@@ -25,7 +25,9 @@ class ClassFields {
 
     Iterable<ClassField> fromElements(Iterable<FieldElement> elements) sync* {
       for (final element in elements) {
-        if (element.isStatic) {
+        if (element.isPrivate) {
+          continue;
+        } else if (element.isStatic) {
           //TODO handle statics
           continue;
         }
