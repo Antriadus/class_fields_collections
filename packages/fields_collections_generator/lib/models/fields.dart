@@ -30,11 +30,11 @@ class ClassFields {
           continue;
         }
         // getters
-        else if (element.isSynthetic) {
+        else if (element.isSynthetic && element.getter != null) {
           if (!isFieldExcluded(element.nonSynthetic)) {
             yield ClassField.fromElement(element, element.type as InterfaceType);
           }
-        } else if (element.type is InterfaceType) {
+        } else if (!element.isSynthetic && element.type is InterfaceType) {
           if (!isFieldExcluded(element)) {
             yield ClassField.fromElement(element, element.type as InterfaceType);
           }

@@ -17,6 +17,7 @@ void main() {
     'nullable_no_match',
     'nullable_strings',
     'nullable_types',
+    'setter',
     'strings',
   ];
 
