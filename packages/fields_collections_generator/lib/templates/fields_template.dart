@@ -14,13 +14,16 @@ class FieldsTemplate {
   String generate() {
     final fields = StringBuffer();
     for (var field in subject.classFields.fields) {
+      fields.write('"');
+      fields.write(field.name);
+      fields.write('":');
       fields.write(field.name);
       fields.write(',\n');
     }
 
     final result = '''
     extension ${subject.name}FieldsExtensions on ${subject.name} {
-      Set<${subject.classFields.commonType}> get fields => {
+      Map<String,${subject.classFields.commonType}> get fields => {
        ${fields.toString()}
       };
     }

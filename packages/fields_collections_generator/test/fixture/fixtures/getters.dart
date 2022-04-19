@@ -5,8 +5,8 @@
 part of '../getters.dart';
 
 extension GettersFieldsExtensions on Getters {
-  Set<Object> get fields => {
-        age,
-        value,
+  Map<String, Object> get fields => {
+        "age": age,
+        "value": value,
       };
 }

@@ -5,8 +5,8 @@
 part of '../exclude.dart';
 
 extension ExcludeFieldsExtensions on Exclude {
-  Set<Object> get fields => {
-        firstName,
-        age,
+  Map<String, Object> get fields => {
+        "firstName": firstName,
+        "age": age,
       };
 }

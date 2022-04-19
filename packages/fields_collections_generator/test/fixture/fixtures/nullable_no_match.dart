@@ -5,8 +5,8 @@
 part of '../nullable_no_match.dart';
 
 extension NestedTypesFieldsExtensions on NestedTypes {
-  Set<Object?> get fields => {
-        bottom,
-        name,
+  Map<String, Object?> get fields => {
+        "bottom": bottom,
+        "name": name,
       };
 }

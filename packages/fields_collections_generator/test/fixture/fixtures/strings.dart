@@ -5,8 +5,8 @@
 part of '../strings.dart';
 
 extension StringsFieldsExtensions on Strings {
-  Set<String> get fields => {
-        firstName,
-        lastName,
+  Map<String, String> get fields => {
+        "firstName": firstName,
+        "lastName": lastName,
       };
 }
